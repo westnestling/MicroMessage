@@ -35,11 +35,11 @@
     <if test="description!=null&amp;&amp;!&quot;&quot;.equals(description.trim())"> and DESCRIPTION like '%' #{description} '%'</if>
   </select>
 
-<!-- 
-  <delete id="delete" parameterType="UserAlias">
-    DELETE FROM user WHERE id = #{id:INTEGER}
+
+  <delete id="deleteOne" parameterType="int">
+    DELETE FROM MESSAGE WHERE id = #{_parameter}
   </delete>
- -->
+
   <!-- <insert id="insert" parameterType="UserAlias" useGeneratedKeys="false">
     INSERT INTO user
     ( id,

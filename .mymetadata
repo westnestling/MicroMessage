@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="Copy of MicroMessage"
+  name="MicroMessage"
   id="myeclipse.1480296677730"
   context-root="/MicroMessage"
   j2ee-spec="6.0"
-  archive="Copy of MicroMessage.war">
+  archive="MicroMessage.war">
   <attributes>
     <attribute name="webrootdir" value="WebRoot" />
   </attributes>

@@ -18,7 +18,6 @@ public class DBAccess {
 		//通过配置文件获取数据库连接信息
 		try {
 			Reader reader= Resources.getResourceAsReader("com/daley/config/Configuration.xml");
-			
 			SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
 			SqlSession sqlSession=sqlSessionFactory.openSession();
 			return sqlSession;

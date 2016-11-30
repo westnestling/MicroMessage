@@ -24,7 +24,7 @@ public class MessageDao {
 	 * Class.forName("com.mysql.jdbc.Driver");
 	 * 
 	 * Connection conn = DriverManager.getConnection(
-	 * "jdbc:mysql://127.0.0.1:3306/mybatis", "root", "root");
+	 * "jdbc:mysql://127.0.0.1:3306/mybatis", "root", "kyegickka");
 	 * StringBuilder sql = new StringBuilder(
 	 * "select ID,COMMAND,DESCRIPTION,CONTENT from message where 1=1");
 	 * List<String> paramList = new ArrayList<String>();
@@ -51,7 +51,10 @@ public class MessageDao {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = dbAccess.getSqlSession();
-			messageList=sqlSession.selectList("Message.queryMessageList");
+			Message message=new Message();
+			message.setCommand(command);
+			message.setDescription(description);
+			messageList=sqlSession.selectList("Message.queryMessageList",message);
 
 		} catch (Exception e) {
 			e.printStackTrace();

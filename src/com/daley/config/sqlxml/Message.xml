@@ -29,8 +29,10 @@
     <result column="CONTENT" jdbcType="VARCHAR" property="content"/>
   </resultMap>
 
-  <select id="queryMessageList" resultMap="MessageResult">
+  <select id="queryMessageList" parameterType="com.daley.bean.Message" resultMap="MessageResult">
     select ID,COMMAND,DESCRIPTION,CONTENT from message where 1=1
+    <if test="command!=null&amp;&amp;!&quot;&quot;.equals(command.trim())"> and COMMAND=#{command}</if>
+    <if test="description!=null&amp;&amp;!&quot;&quot;.equals(description.trim())"> and DESCRIPTION like '%' #{description} '%'</if>
   </select>
 
 <!-- 

@@ -26,4 +26,12 @@
   	<servlet-name>DeleteOneServlet</servlet-name>
   	<url-pattern>/DeleteOne.action</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>DeleteBatchServlet</servlet-name>
+  	<servlet-class>com.daley.servlet.DeleteBatchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DeleteBatchServlet</servlet-name>
+  	<url-pattern>/DeleteBatch.action</url-pattern>
+  </servlet-mapping>
 </web-app>

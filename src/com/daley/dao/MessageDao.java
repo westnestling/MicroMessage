@@ -82,4 +82,20 @@ public class MessageDao {
 			}
 		}
 	}
+	public void deleteBatch(List<Integer> ids){
+		DBAccess dbAccess = new DBAccess();
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			sqlSession.delete("Message.deleteBatch",ids);
+			sqlSession.commit();  //对数据库操作需要提交事务
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(sqlSession!=null){
+			sqlSession.close();
+			}
+		}
+	}
 }

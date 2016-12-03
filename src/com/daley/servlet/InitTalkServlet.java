@@ -7,24 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.daley.service.MaintainService;
-
 /**
- * 批量删除
- * 
  * @author Daley Date 2016-12-1 project_name MicroMessage
  */
-public class DeleteBatchServlet extends HttpServlet {
+public class InitTalkServlet extends HttpServlet {
+
+	/**
+	 * 对话页的初始化控制
+	 */
 	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String[] ids = request.getParameterValues("ids");
-		MaintainService maintainService = new MaintainService();
-		maintainService.deleteBatch(ids);
-		request.getRequestDispatcher("/List.action").forward(request, response);
+		request.setCharacterEncoding("utf-8"); 
+		request.getRequestDispatcher("/WEB-INF/jsp/front/talk.jsp").forward(
+				request, response);
 	}
-	
+
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		this.doGet(req, resp);

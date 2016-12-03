@@ -1,15 +1,8 @@
 package com.daley.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
-
 import com.daley.bean.Message;
 import com.daley.db.DBAccess;
 
@@ -46,55 +39,58 @@ public class MessageDao {
 	 * messageList; }
 	 */
 	public List<Message> queryMessageList(String command, String description) {
-		List<Message> messageList=new ArrayList<Message>();
+		List<Message> messageList = new ArrayList<Message>();
 		DBAccess dbAccess = new DBAccess();
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = dbAccess.getSqlSession();
-			Message message=new Message();
+			Message message = new Message();
 			message.setCommand(command);
 			message.setDescription(description);
-			messageList=sqlSession.selectList("Message.queryMessageList",message);
+			messageList = sqlSession.selectList("Message.queryMessageList",
+					message);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if(sqlSession!=null){
-			sqlSession.close();
+			if (sqlSession != null) {
+				sqlSession.close();
 			}
 		}
 		return messageList;
 	}
-	//单条删除
-	public void deleteOne(int id){
+
+	// 单条删除
+	public void deleteOne(int id) {
 		DBAccess dbAccess = new DBAccess();
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = dbAccess.getSqlSession();
-			sqlSession.delete("Message.deleteOne",id);
-			sqlSession.commit();  //对数据库操作需要提交事务
+			sqlSession.delete("Message.deleteOne", id);
+			sqlSession.commit(); // 对数据库操作需要提交事务
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if(sqlSession!=null){
-			sqlSession.close();
+			if (sqlSession != null) {
+				sqlSession.close();
 			}
 		}
 	}
-	public void deleteBatch(List<Integer> ids){
+
+	public void deleteBatch(List<Integer> ids) {
 		DBAccess dbAccess = new DBAccess();
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = dbAccess.getSqlSession();
-			sqlSession.delete("Message.deleteBatch",ids);
-			sqlSession.commit();  //对数据库操作需要提交事务
+			sqlSession.delete("Message.deleteBatch", ids);
+			sqlSession.commit(); // 对数据库操作需要提交事务
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if(sqlSession!=null){
-			sqlSession.close();
+			if (sqlSession != null) {
+				sqlSession.close();
 			}
 		}
 	}

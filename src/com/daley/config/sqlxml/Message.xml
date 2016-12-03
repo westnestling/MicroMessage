@@ -29,9 +29,10 @@
 
 
 	<delete id="deleteOne" parameterType="int">
-		DELETE FROM MESSAGE WHERE id = #{_parameter}
+		DELETE FROM MESSAGE WHERE
+		id = #{_parameter}
 	</delete>
-	
+
 	<delete id="deleteBatch" parameterType="java.util.List">
 		DELETE FROM MESSAGE WHERE id in(
 		<foreach collection="list" item="item" separator=",">

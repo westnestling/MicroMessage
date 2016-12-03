@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.daley.service.ListService;
+import com.daley.service.QueryService;
 
 /**
  * 页面初始化控制
@@ -21,16 +21,17 @@ public class ListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		//接受页面的值
+		// 接受页面的值
 		String command = request.getParameter("command");
 		String description = request.getParameter("description");
-		//向页面传值
+		// 向页面传值
 		request.setAttribute("command", command);
 		request.setAttribute("description", description);
 		try {
-			ListService listService=new ListService();
-			//查询消息列表传给页面
-			request.setAttribute("messageList", listService.queryMessageList(command, description));
+			QueryService listService = new QueryService();
+			// 查询消息列表传给页面
+			request.setAttribute("messageList",
+					listService.queryMessageList(command, description));
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

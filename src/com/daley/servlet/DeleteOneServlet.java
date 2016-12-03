@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.daley.service.ListService;
 import com.daley.service.MaintainService;
 
 /**
@@ -26,11 +25,10 @@ public class DeleteOneServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String id=request.getParameter("id");
-		MaintainService maintainService=new MaintainService();
+		String id = request.getParameter("id");
+		MaintainService maintainService = new MaintainService();
 		maintainService.deleteOne(id);
-		request.getRequestDispatcher("/List.action").forward(
-				request, response);
+		request.getRequestDispatcher("/List.action").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)

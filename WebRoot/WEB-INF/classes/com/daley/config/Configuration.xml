@@ -25,5 +25,7 @@
 
 	<mappers>
 		<mapper resource="com/daley/config/sqlxml/Message.xml" />
+		<mapper resource="com/daley/config/sqlxml/Command.xml" />
+		<mapper resource="com/daley/config/sqlxml/CommandContent.xml" />
 	</mappers>
 </configuration>

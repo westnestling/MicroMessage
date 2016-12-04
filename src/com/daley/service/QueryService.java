@@ -2,8 +2,12 @@ package com.daley.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Random;
 
+import com.daley.bean.Command;
+import com.daley.bean.CommandContent;
 import com.daley.bean.Message;
+import com.daley.dao.CommandDAO;
 import com.daley.dao.MessageDao;
 import com.daley.util.Iconst;
 
@@ -18,24 +22,27 @@ public class QueryService {
 	}
 
 	public String queryByCommand(String command) {
-		MessageDao messageDao = new MessageDao();
-		List<Message> messageList;
+		CommandDAO commandDao = new CommandDAO();
+		List<Command> commandList;
 		if (Iconst.HELP_COMMAND.equals(command)) {
-			messageList = messageDao.queryMessageList(null, null);
+			commandList = commandDao.queryCommandList(null, null);
 			StringBuilder result = new StringBuilder();
-			for (int i = 0; i < messageList.size(); i++) {
+			for (int i = 0; i < commandList.size(); i++) {
 				if (i != 0) {
 					result.append("<br/>");
 				}
-				result.append("回复【" + messageList.get(i).getCommand() + "】可以查看"
-						+ messageList.get(i).getDescription());
+				result.append("回复【" + commandList.get(i).getName() + "】可以查看"
+						+ commandList.get(i).getDescription());
 			}
 			return result.toString();
 		}
-		messageList = messageDao.queryMessageList(command, null);
+		commandList = commandDao.queryCommandList(command, null);
 
-		if (messageList.size() > 0) {
-			return messageList.get(0).getContent();
+		if (commandList.size() > 0) {
+			List<CommandContent> contentList = commandList.get(0)
+					.getContentList();
+			int i = new Random().nextInt(contentList.size()+1);
+			return contentList.get(i).getContent();
 		}
 		return Iconst.NO_MATCHING_CONTENT;
 	}
